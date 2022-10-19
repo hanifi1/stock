@@ -3,22 +3,28 @@ import logging
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.linear_model import LinearRegression
 
+import datetime
+from datetime import datetime
+import datetime
+from yahoo_fin import stock_info as si
+import pandas as pd
+import matplotlib.pylab as plt
+import numpy as np
+from sklearn.svm import SVR
+from sklearn.preprocessing import MinMaxScaler
 
-def create_features(df_stock, nlags=10):
+
+def create_features(df_stock):
     df_resampled = df_stock.copy()
-    lags_col_names = []
-    for i in range(nlags + 1):
-        df_resampled['lags_' + str(i)] = df_resampled['close'].shift(i)
-        lags_col_names.append('lags_' + str(i))
-    df = df_resampled[lags_col_names]
-    print(df)
+    df = df_resampled[['close']]
+    df['Diff'] = df['close'].diff()
     df = df.dropna(axis=0)
-
     return df
 
 
-def create_X_Y(df_lags):
-    X = df_lags.drop('lags_0', axis=1)
+def create_X_Y(df):
+    scaler = MinMaxScaler()
+    df['Diff_scaler'] = scaler.fit_transform()
     Y = df_lags[['lags_0']]
     return X, Y
 
@@ -27,11 +33,11 @@ class Stock_model(BaseEstimator, TransformerMixin):
 
     def __init__(self, data_fetcher):
         self.log = logging.getLogger()
-        self.lr = LinearRegression()
+        self.svr = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
         self._data_fetcher = data_fetcher
         self.log.warning('here')
 
-    def fit(self, X, Y=None):
+    def fit(self, X, Y):
         data = self._data_fetcher(X)
         df_features = create_features(data)
         df_features, Y = create_X_Y(df_features)
