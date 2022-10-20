@@ -2,6 +2,6 @@
 docker build . -f Dockerfile -t my_image
 
 #to run the docker image:
-docker run -p 8080:8080 -v $GOOGLE_APPLICATION_CREDENTIALS:/creds.json -e GOOGLE_APPLICATION_CREDENTIALS=/creds.json my_image
+docker run -p 8080:8080 -v "C:\McGill Project_JSON\mcgill-project-365704-ecee182c3248.json":/creds.json -e GOOGLE_APPLICATION_CREDENTIALS=/creds.json my_image
 #to log into the docker image:
 docker run -it -p 8080:8080 -v $GOOGLE_APPLICATION_CREDENTIALS:/creds.json -e GOOGLE_APPLICATION_CREDENTIALS=/creds.json my_image /bin/bash

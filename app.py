@@ -6,6 +6,7 @@ from src.business_logic.process_query import create_business_logic
 app = Flask(__name__)
 
 
+
 @app.route('/', methods=['GET'])
 def hello():
     return f'Hello dear students, you should use a better route:!\nEX: get_stock_val/<ticker>\n'
