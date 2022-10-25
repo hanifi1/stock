@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-docker.pkg.dev/mcgill-project-365704/ycng228/ycng_image_predictor', '.' ]
+  args: [ 'build', '-t', 'northamerica-northeast1-docker.pkg.dev/my-project-second-test-366600/ycng228', '.' ]
 images: ['us-docker.pkg.dev/mcgill-project-365704/ycng228/ycng_image_predictor']
 #options:
 #  pool:
@@ -14,3 +14,6 @@ timeout: '1200s'
 
 
 ## Path updated
+
+
+######'us-docker.pkg.dev/mcgill-project-365704/ycng228/ycng_image_predictor'
