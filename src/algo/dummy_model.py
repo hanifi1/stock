@@ -47,8 +47,15 @@ class Stock_model(BaseEstimator, TransformerMixin):
         predictions = self.lr.predict(df_features)
         print(predictions.flatten()[-1])
         print(data.loc[data.index.max(), 'close'])
-        print(data.loc[data.index.max(), 'close'] - predictions.flatten()[-1])
-        return predictions.flatten()[-1]
+        Difff = data.loc[data.index.max(), 'close'] - predictions.flatten()[-1]
+        print(Diff)
+        if Diff > 0
+            return 'Sell'
+        else:
+            return 'Buy'
+
+
+        # return predictions.flatten()[-1]
 
 
 
