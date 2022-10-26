@@ -1,4 +1,6 @@
 
+
+
 from flask import Flask
 import git
 from src.business_logic.process_query import create_business_logic
@@ -9,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return f'Hello dear students, you should use a better route:!\nEX: get_stock_val/<ticker>\n'
+    return f'Please enter ticker name!\nEX: get_stock_val/<ticker>\n'
 
 
 @app.route('/get_stock_val/<ticker>', methods=['GET'])

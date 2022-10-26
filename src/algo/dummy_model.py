@@ -39,14 +39,15 @@ class Stock_model(BaseEstimator, TransformerMixin):
         return self
 
     def predict(self, X, Y=None):
-        print(X)
         data = self._data_fetcher(X, last=True)
         print(data)
         df_features = create_features(data)
         print(df_features)
         df_features, Y = create_X_Y(df_features)
         predictions = self.lr.predict(df_features)
-
+        print(predictions.flatten()[-1])
+        print(data.loc[data.index.max(), 'close'])
+        print(data.loc[data.index.max(), 'close'] - predictions.flatten()[-1])
         return predictions.flatten()[-1]
 
 
