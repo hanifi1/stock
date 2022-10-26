@@ -49,7 +49,7 @@ class Stock_model(BaseEstimator, TransformerMixin):
         print(data.loc[data.index.max(), 'close'])
         Difff = data.loc[data.index.max(), 'close'] - predictions.flatten()[-1]
         print(Diff)
-        if Diff > 0
+        if Diff > 0:
             return 'Sell'
         else:
             return 'Buy'
