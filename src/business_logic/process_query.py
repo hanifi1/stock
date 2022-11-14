@@ -8,8 +8,8 @@ from src.IO.storage_tools import create_bucket, get_model_from_bucket, upload_fi
 from src.algo.dummy_model import Stock_model
 
 
-def create_business_logic():
-    data_fetcher = get_last_stock_price
+def create_business_logic(ticker):
+    data_fetcher = get_last_stock_price(ticker)
     return BusinessLogic(Stock_model(data_fetcher))
 
 

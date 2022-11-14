@@ -1,9 +1,7 @@
-
-
-
 from flask import Flask
 import git
 from src.business_logic.process_query import create_business_logic
+from src.algo.dummy_model import Predict
 
 app = Flask(__name__)
 
@@ -16,8 +14,8 @@ def hello():
 
 @app.route('/get_stock_val/<ticker>', methods=['GET'])
 def get_stock_value(ticker):
-    bl = create_business_logic()
-    prediction = bl.do_predictions_for(ticker)
+    # bl = create_business_logic(ticker)
+    prediction = Predict(ticker)
 
     return f'{prediction}\n'
 
@@ -33,4 +31,4 @@ def getversion():
 if __name__ == '__main__':
     # Used when running locally only. When deploying to Cloud Run,
     # a webserver process such as Gunicorn will serve the app.
-    app.run(host='localhost', port=8080, debug=True)
+    app.run(host='localhost', port=8081, debug=True)

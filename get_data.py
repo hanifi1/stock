@@ -24,3 +24,4 @@ for ticker in list_ticker_snp_500:
         print("Oops!", e.__class__, "occurred.")
 
         print("Next ticker.")
+
